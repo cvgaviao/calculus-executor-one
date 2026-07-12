@@ -1,0 +1,22 @@
+document:
+  dsl: '1.0.0'
+  namespace: matrisk
+  name: big-calculation
+  version: '0.1.0'
+
+# This section triggers the workflow automatically when a matching event arrives
+schedule:
+  on:
+    one:
+      with:
+        type: matrisk.calculus-one.incoming
+
+do:
+  - calculusSubflowA:
+      run:
+        workflow:
+          namespace: matrisk
+          name: calculate-rates-by-curves
+          version: '0.1.0'
+          input:
+            curves: .curves
